@@ -1,0 +1,783 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ش.ذ.م.م جلولي هشام | NSR.DJ - المذبح المعتمَد</title>
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-red: #d92d20;
+            --primary-hover: #b42318;
+            --bg-cream: #fbf9f5;
+            --card-bg: #ffffff;
+            --text-main: #1d2939;
+            --text-muted: #667085;
+            --border: #eaecf0;
+            --accent-green: #079455;
+            --accent-green-bg: #edfcf2;
+            --shadow-sm: 0 2px 6px rgba(16, 24, 40, 0.04);
+            --shadow-md: 0 12px 24px -4px rgba(16, 24, 40, 0.08);
+        }
+
+        * {
+            box-sizing: border-box;
+            font-family: 'Tajawal', sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: var(--bg-cream);
+            color: var(--text-main);
+            padding-bottom: 0;
+        }
+
+        .container {
+            max-width: 1240px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Protected Admin Bar */
+        .admin-bar {
+            background: #101828;
+            color: #fff;
+            padding: 10px 0;
+            font-size: 0.88rem;
+        }
+
+        .admin-bar-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .admin-inputs {
+            display: none;
+            gap: 15px;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .admin-inputs.active {
+            display: flex;
+        }
+
+        .admin-inputs label {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            font-size: 0.8rem;
+            color: #eaecf0;
+        }
+
+        .admin-inputs input {
+            width: 75px;
+            padding: 4px 8px;
+            border-radius: 6px;
+            border: 1px solid #475467;
+            background: #1d2939;
+            color: #fff;
+            font-weight: bold;
+            text-align: center;
+        }
+
+        .btn-admin-login {
+            background: var(--primary-red);
+            color: #fff;
+            border: none;
+            padding: 6px 14px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 0.82rem;
+        }
+
+        /* Official Header */
+        header {
+            background: #ffffff;
+            border-bottom: 1px solid var(--border);
+            padding: 20px 0;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .header-grid {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .brand-container {
+            display: flex;
+            align-items: center;
+            gap: 18px;
+        }
+
+        /* تنسيق صورة اللوجو الجديدة */
+        .brand-logo-img {
+            width: 85px;
+            height: 85px;
+            object-fit: contain;
+            border-radius: 50%;
+        }
+
+        .brand-text h1 {
+            font-size: 1.5rem;
+            font-weight: 900;
+            color: var(--text-main);
+        }
+
+        .brand-text p {
+            color: var(--primary-red);
+            font-weight: 700;
+            font-size: 0.9rem;
+            margin-top: 2px;
+        }
+
+        .badge-cert {
+            background: var(--accent-green-bg);
+            border: 1px solid #abefc6;
+            color: var(--accent-green);
+            padding: 8px 18px;
+            border-radius: 30px;
+            font-size: 0.85rem;
+            font-weight: 800;
+        }
+
+        /* Ticker Banner */
+        .ticker-banner {
+            background: #fef3f2;
+            border: 1px solid #fecdca;
+            color: var(--primary-red);
+            padding: 12px 20px;
+            border-radius: 12px;
+            margin: 25px 0;
+            font-weight: 800;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            box-shadow: var(--shadow-sm);
+        }
+
+        /* Main Layout Grid */
+        .app-grid {
+            display: grid;
+            grid-template-columns: 1fr 380px;
+            gap: 30px;
+            align-items: start;
+            margin-bottom: 40px;
+        }
+
+        @media (max-width: 960px) {
+            .app-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Section Titles */
+        .category-header {
+            margin: 25px 0 15px 0;
+            padding-bottom: 8px;
+            border-bottom: 2px solid var(--border);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .category-header h2 {
+            font-size: 1.25rem;
+            font-weight: 800;
+        }
+
+        .category-tag {
+            background: #f2f4f7;
+            color: var(--text-muted);
+            padding: 4px 12px;
+            border-radius: 16px;
+            font-size: 0.8rem;
+            font-weight: 700;
+        }
+
+        /* Product Cards Container */
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+            gap: 20px;
+        }
+
+        .product-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            overflow: hidden;
+            transition: all 0.25s ease;
+            display: flex;
+            flex-direction: column;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .product-card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-md);
+            border-color: var(--primary-red);
+        }
+
+        .product-img-wrapper {
+            position: relative;
+            width: 100%;
+            height: 180px;
+            background: #f8fafc;
+            overflow: hidden;
+        }
+
+        .product-img-wrapper img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .product-content {
+            padding: 16px;
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
+            justify-content: space-between;
+        }
+
+        .product-title {
+            font-size: 1.05rem;
+            font-weight: 800;
+            margin-bottom: 4px;
+        }
+
+        .product-desc {
+            font-size: 0.82rem;
+            color: var(--text-muted);
+            line-height: 1.4;
+            margin-bottom: 10px;
+        }
+
+        .product-price {
+            font-size: 1.25rem;
+            font-weight: 900;
+            color: var(--primary-red);
+            margin-bottom: 10px;
+        }
+
+        .weight-input-group {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 10px;
+            background: #f8fafc;
+            padding: 6px 10px;
+            border-radius: 8px;
+            border: 1px solid var(--border);
+        }
+
+        .weight-input-group label {
+            font-size: 0.8rem;
+            font-weight: 700;
+        }
+
+        .weight-input-group input {
+            width: 100%;
+            padding: 5px;
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            font-weight: bold;
+            text-align: center;
+        }
+
+        .cut-select {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            font-size: 0.85rem;
+            margin-bottom: 10px;
+            background: var(--bg-cream);
+        }
+
+        .btn-add-cart {
+            width: 100%;
+            background: var(--text-main);
+            color: #ffffff;
+            border: none;
+            padding: 10px;
+            border-radius: 8px;
+            font-weight: 800;
+            cursor: pointer;
+        }
+
+        .btn-add-cart:hover {
+            background: var(--primary-red);
+        }
+
+        /* Cart Panel */
+        .cart-sticky-panel {
+            background: #ffffff;
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            padding: 20px;
+            position: sticky;
+            top: 20px;
+            box-shadow: var(--shadow-md);
+        }
+
+        .cart-title {
+            font-size: 1.15rem;
+            font-weight: 800;
+            border-bottom: 2px solid var(--border);
+            padding-bottom: 10px;
+            margin-bottom: 14px;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .cart-items-list {
+            max-height: 250px;
+            overflow-y: auto;
+            margin-bottom: 14px;
+        }
+
+        .cart-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 8px 0;
+            border-bottom: 1px dashed var(--border);
+            font-size: 0.85rem;
+        }
+
+        .cart-item-price {
+            font-weight: 800;
+            color: var(--primary-red);
+        }
+
+        .btn-remove {
+            color: #98a2b3;
+            cursor: pointer;
+            margin-left: 8px;
+        }
+
+        .total-box {
+            background: var(--bg-cream);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            padding: 12px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+        .total-price {
+            font-size: 1.2rem;
+            font-weight: 900;
+            color: var(--accent-green);
+        }
+
+        .form-label {
+            display: block;
+            font-size: 0.8rem;
+            font-weight: 700;
+            color: var(--text-muted);
+            margin-bottom: 4px;
+        }
+
+        .form-input {
+            width: 100%;
+            padding: 9px;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            margin-bottom: 10px;
+            outline: none;
+            font-size: 0.85rem;
+        }
+
+        .btn-checkout {
+            width: 100%;
+            background: #0284c7;
+            color: #ffffff;
+            border: none;
+            padding: 12px;
+            border-radius: 8px;
+            font-weight: 800;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        .btn-checkout:hover {
+            background: #0369a1;
+        }
+
+        /* Official Footer */
+        footer {
+            background: #101828;
+            color: #eaecf0;
+            padding: 35px 0 20px 0;
+            border-top: 4px solid var(--primary-red);
+            margin-top: 40px;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 25px;
+            margin-bottom: 25px;
+        }
+
+        .footer-col h3 {
+            color: #fff;
+            font-size: 1.1rem;
+            margin-bottom: 12px;
+            border-right: 3px solid var(--primary-red);
+            padding-right: 8px;
+        }
+
+        .footer-col p {
+            font-size: 0.88rem;
+            color: #98a2b3;
+            line-height: 1.7;
+            margin-bottom: 6px;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid #1d2939;
+            font-size: 0.8rem;
+            color: #667085;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Admin Bar with Password Protection -->
+    <div class="admin-bar">
+        <div class="container admin-bar-content">
+            <div style="display:flex; align-items:center; gap: 10px;">
+                <strong>⚙️ تعديل الأسعار اليومية:</strong>
+                <button class="btn-admin-login" id="adminBtn" onclick="toggleAdmin()">🔒 دخول الإدارة</button>
+            </div>
+            
+            <div class="admin-inputs" id="adminInputs">
+                <label>دجاج كامل: <input type="number" id="p_whole" value="450" onchange="updatePrices()"></label>
+                <label>صدور: <input type="number" id="p_breast" value="800" onchange="updatePrices()"></label>
+                <label>أفخاذ: <input type="number" id="p_legs" value="500" onchange="updatePrices()"></label>
+                <label>أجنحة: <input type="number" id="p_wings" value="350" onchange="updatePrices()"></label>
+                <label>كبد وقوانص: <input type="number" id="p_liver" value="600" onchange="updatePrices()"></label>
+            </div>
+        </div>
+    </div>
+
+    <!-- Official Header -->
+    <header>
+        <div class="container header-grid">
+            <div class="brand-container">
+                <!-- صورة اللوجو الخاصة بك -->
+                <img src="logo.png" alt="NSR.DJ Logo" class="brand-logo-img" onerror="this.onerror=null; this.src='image_e656dd.png';">
+                
+                <div class="brand-text">
+                    <h1>ش.ذ.م.م جلولي هشام</h1>
+                    <p>المذبح المعتمَد لتوزيع الدواجن واللحوم البيضاء بالجملة والتجزئة</p>
+                </div>
+            </div>
+            <div class="badge-cert">
+                ✓ الاعتماد الصحي الرسمي: 44/11/38
+            </div>
+        </div>
+    </header>
+
+    <div class="container">
+        <!-- Daily Ticker Banner -->
+        <div class="ticker-banner">
+            <span>📢 البورصة اليومية: الأسعار محدثة بتاريخ اليوم لمذبح عين الدفلى</span>
+            <span style="font-size: 0.8rem; background: #fff; padding: 4px 10px; border-radius: 6px;">توصيل يومي للجزارين والمحلات</span>
+        </div>
+
+        <div class="app-grid">
+            <!-- Catalog Side -->
+            <div>
+                <div class="category-header">
+                    <h2>🐔 دجاج كامل طازج (Whole Chicken)</h2>
+                    <span class="category-tag">القسم 01</span>
+                </div>
+                <div class="products-grid" id="grid-whole"></div>
+
+                <div class="category-header">
+                    <h2>اللحوم المجزأة (Chicken Parts)</h2>
+                    <span class="category-tag">القسم 02</span>
+                </div>
+                <div class="products-grid" id="grid-parts"></div>
+
+                <div class="category-header">
+                    <h2>الأحشاء والمرفقات (Offal & Bones)</h2>
+                    <span class="category-tag">القسم 03</span>
+                </div>
+                <div class="products-grid" id="grid-offal"></div>
+            </div>
+
+            <!-- Side Cart Panel -->
+            <div class="cart-sticky-panel">
+                <div class="cart-title">
+                    <span>🛒 سلة الطلبيات</span>
+                    <span id="cartCountBadge" style="font-size: 0.8rem; background: var(--primary-red); color: #fff; padding: 2px 8px; border-radius: 10px;">0 عناصر</span>
+                </div>
+
+                <div class="cart-items-list" id="cartContainer">
+                    <p style="color: var(--text-muted); text-align: center; padding: 20px 0; font-size: 0.85rem;">السلة فارغة. حدد الوزن واضغط على إضافة.</p>
+                </div>
+
+                <div class="total-box">
+                    <span style="font-weight: 700;">المبلغ الإجمالي التقديري:</span>
+                    <span class="total-price" id="totalDisplay">0 دج</span>
+                </div>
+
+                <form onsubmit="handleOrderSubmit(event)">
+                    <label class="form-label">اسم الجزار / المحل / الزبون</label>
+                    <input type="text" id="custName" class="form-input" required placeholder="مثال: جزارة السلام">
+
+                    <label class="form-label">رقم الهاتف للاتصال</label>
+                    <input type="tel" id="custPhone" class="form-input" required placeholder="06XXXXXXXX">
+
+                    <label class="form-label">ملاحظات أو عنوان التوصيل</label>
+                    <textarea id="custNotes" class="form-input" rows="2" placeholder="مثال: التوصيل صباحاً"></textarea>
+
+                    <button type="submit" id="submitBtn" class="btn-checkout">تأكيد وإرسال الطلب عبر تلجرام 🚀</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Official Footer -->
+    <footer>
+        <div class="container footer-grid">
+            <div class="footer-col">
+                <h3>ش.ذ.م.م جلولي هشام (NSR.DJ)</h3>
+                <p>📍 <strong>العنوان القانوني:</strong> مجموعة ملكية رقم 474 قسم 11، فرقة غوالم شمال جليدة، ولاية عين الدفلى.</p>
+                <p>📜 <strong>رقم الاعتماد الصحي:</strong> 44/11/38</p>
+            </div>
+            
+            <div class="footer-col">
+                <h3>معلومات التنسيق والشروط الصحية</h3>
+                <p>❄️ <strong>شروط الحفظ:</strong> يحفظ تحت درجة حرارة بين 0° إلى 4° مئوية.</p>
+                <p>📅 <strong>تاريخ الذبح والتحضير:</strong> يومي طازج</p>
+                <p>⏳ <strong>الصلاحية:</strong> يستهلك خلال 3 أيام من تاريخ الذبح</p>
+            </div>
+
+            <div class="footer-col">
+                <h3>طلب التوصيل والخدمات</h3>
+                <p>📞 <strong>رقم الهاتف والتواصل:</strong> 0661XX XX XX / 0770XX XX XX</p>
+                <p>🚚 خدمة التوصيل المبرد متوفرة يومياً للمحلات والمطاعم والجزارين عبر كامل الولايات المجاورة.</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            جميع الحقوق محفوظة © ش.ذ.م.م جلولي هشام (NSR.DJ) - عين الدفلى
+        </div>
+    </footer>
+
+    <script>
+        const BOT_TOKEN = '8763087381:AAHimivIod2odlqzsF6G06vkHaZKtBhI7Ik';
+        const CHAT_ID = '1858438551';
+
+        const CUSTOM_IMAGES = {
+            legs: 'WhatsApp-Image-2024-06-10-at-8.07.18-PM.jpeg',
+            wings: 'أجنحة-دجاج-1ك-طازج.jpg',
+            liver: 'Capture.JPG',
+            whole: 'https://images.unsplash.com/photo-1587593810167-a84920ea0781?auto=format&fit=crop&w=600&q=80',
+            breast: 'https://images.unsplash.com/photo-1604503468506-a8da13d82791?auto=format&fit=crop&w=600&q=80'
+        };
+
+        let productsData = [];
+
+        function toggleAdmin() {
+            const adminInputs = document.getElementById('adminInputs');
+            const adminBtn = document.getElementById('adminBtn');
+
+            if (adminInputs.classList.contains('active')) {
+                adminInputs.classList.remove('active');
+                adminBtn.innerText = '🔒 دخول الإدارة';
+            } else {
+                const pass = prompt('يرجى إدخال كلمة المرور لدخول لوحة التحكم بالأسعار:');
+                if (pass === '1234') {
+                    adminInputs.classList.add('active');
+                    adminBtn.innerText = '🔓 إغلاق الإدارة';
+                } else if (pass !== null) {
+                    alert('كلمة المرور غير صحيحة!');
+                }
+            }
+        }
+
+        function initData() {
+            const pWhole = parseFloat(document.getElementById('p_whole').value) || 450;
+            const pBreast = parseFloat(document.getElementById('p_breast').value) || 800;
+            const pLegs = parseFloat(document.getElementById('p_legs').value) || 500;
+            const pWings = parseFloat(document.getElementById('p_wings').value) || 350;
+            const pLiver = parseFloat(document.getElementById('p_liver').value) || 600;
+
+            productsData = [
+                { id: 'w1', category: 'whole', name: 'دجاج كامل طازج', unitPrice: pWhole, img: CUSTOM_IMAGES.whole, desc: 'ذبح يومي طازج مع خيارات التقطيع.', cuts: ['بدون تقطيع (كاملة)', 'مقسمة إلى نصفين', 'مقسمة 4 قطع', 'مقسمة 8 قطع'] },
+                { id: 'p1', category: 'parts', name: 'صدور دجاج (Escalope)', unitPrice: pBreast, img: CUSTOM_IMAGES.breast, desc: 'صدور طازجة منزوعة العظم مجهزة للتوصيل.' },
+                { id: 'p2', category: 'parts', name: 'أفخاذ دجاج كاملة', unitPrice: pLegs, img: CUSTOM_IMAGES.legs, desc: 'أفخاذ كاملة طازجة مجهزة للبيع.' },
+                { id: 'p3', category: 'parts', name: 'أجنحة دجاج طازجة', unitPrice: pWings, img: CUSTOM_IMAGES.wings, desc: 'أجنحة دجاج طازجة ومنظفة بعناية.' },
+                { id: 'o1', category: 'offal', name: 'كبد وقوانص دواجن', unitPrice: pLiver, img: CUSTOM_IMAGES.liver, desc: 'كبد وقوانص طازجة مجهزة يومياً.' }
+            ];
+            renderProducts();
+        }
+
+        function renderProducts() {
+            renderGridSection('grid-whole', productsData.filter(p => p.category === 'whole'));
+            renderGridSection('grid-parts', productsData.filter(p => p.category === 'parts'));
+            renderGridSection('grid-offal', productsData.filter(p => p.category === 'offal'));
+        }
+
+        function renderGridSection(elementId, items) {
+            const container = document.getElementById(elementId);
+            container.innerHTML = items.map(item => `
+                <div class="product-card">
+                    <div class="product-img-wrapper">
+                        <img src="${item.img}" alt="${item.name}" onerror="this.onerror=null; this.src='https://via.placeholder.com/400x300?text=صورة+المنتج';">
+                    </div>
+                    <div class="product-content">
+                        <div>
+                            <div class="product-title">${item.name}</div>
+                            <div class="product-desc">${item.desc}</div>
+                            <div class="product-price">${item.unitPrice} دج <span style="font-size:0.75rem; color:var(--text-muted)">/ كغ</span></div>
+                            
+                            <div class="weight-input-group">
+                                <label for="weight_${item.id}">الوزن (كغ):</label>
+                                <input type="number" id="weight_${item.id}" value="2.5" step="0.1" min="0.1">
+                            </div>
+
+                            ${item.cuts ? `
+                                <select id="cut_select_${item.id}" class="cut-select">
+                                    ${item.cuts.map(c => `<option value="${c}">${c}</option>`).join('')}
+                                </select>
+                            ` : ''}
+                        </div>
+                        <button class="btn-add-cart" onclick="addToCart('${item.id}')">إضافة للسلة +</button>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        let cart = [];
+
+        function addToCart(productId) {
+            const prod = productsData.find(p => p.id === productId);
+            if (!prod) return;
+
+            const weightInput = document.getElementById(`weight_${productId}`);
+            const weight = parseFloat(weightInput.value) || 1;
+
+            let itemName = prod.name;
+            const cutElem = document.getElementById(`cut_select_${productId}`);
+            if (cutElem) itemName += ` [${cutElem.value}]`;
+
+            const itemTotalPrice = Math.round(prod.unitPrice * weight);
+
+            cart.push({ name: itemName, unitPrice: prod.unitPrice, weight: weight, totalPrice: itemTotalPrice });
+            updateCartUI();
+        }
+
+        function removeFromCart(index) {
+            cart.splice(index, 1);
+            updateCartUI();
+        }
+
+        function updateCartUI() {
+            const container = document.getElementById('cartContainer');
+            const totalDisplay = document.getElementById('totalDisplay');
+            const cartCountBadge = document.getElementById('cartCountBadge');
+
+            cartCountBadge.innerText = `${cart.length} عناصر`;
+
+            if (cart.length === 0) {
+                container.innerHTML = '<p style="color: var(--text-muted); text-align: center; padding: 20px 0; font-size: 0.85rem;">السلة فارغة. حدد الوزن واضغط على إضافة.</p>';
+                totalDisplay.innerText = '0 دج';
+                return;
+            }
+
+            let grandTotal = 0;
+            container.innerHTML = cart.map((item, idx) => {
+                grandTotal += item.totalPrice;
+                return `
+                    <div class="cart-item">
+                        <div>
+                            <div><strong>${item.name}</strong></div>
+                            <div style="font-size:0.75rem; color:var(--text-muted)">${item.weight} كغ × ${item.unitPrice} دج</div>
+                        </div>
+                        <div style="display:flex; align-items:center;">
+                            <span class="cart-item-price">${item.totalPrice} دج</span>
+                            <span class="btn-remove" onclick="removeFromCart(${idx})">✕</span>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+
+            totalDisplay.innerText = `${grandTotal} دج`;
+        }
+
+        function updatePrices() {
+            initData();
+        }
+
+        function handleOrderSubmit(e) {
+            e.preventDefault();
+            if (cart.length === 0) {
+                alert('يرجى إضافة منتج واحد على الأقل للسلة.');
+                return;
+            }
+
+            const submitBtn = document.getElementById('submitBtn');
+            submitBtn.innerText = 'جاري إرسال الطلب... ⏳';
+            submitBtn.disabled = true;
+
+            const name = document.getElementById('custName').value;
+            const phone = document.getElementById('custPhone').value;
+            const notes = document.getElementById('custNotes').value;
+            const grandTotal = document.getElementById('totalDisplay').innerText;
+
+            const itemsFormatted = cart.map(i => `• *${i.name}*\n  الوزن: ${i.weight} كغ | السعر: ${i.totalPrice} دج`).join('\n');
+            const message = `🚚 *طلب جديد من المذبح المعتمَد (NSR.DJ)*\n\n👤 *الزبون:* ${name}\n📞 *الهاتف:* ${phone}\n📝 *ملاحظات:* ${notes || 'لا يوجد'}\n\n📦 *تفاصيل الطلبية:*\n${itemsFormatted}\n\n💰 *المبلغ الإجمالي التقديري:* ${grandTotal}`;
+
+            fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    chat_id: CHAT_ID,
+                    text: message,
+                    parse_mode: 'Markdown'
+                })
+            })
+            .then(res => res.json())
+            .then(data => {
+                if (data.ok) {
+                    alert('✅ تم إرسال طلبيتك بنجاح إلى المذبح عبر تليجرام!');
+                    cart = [];
+                    updateCartUI();
+                    e.target.reset();
+                } else {
+                    alert('❌ حدث خطأ أثناء إرسال الطلب، يرجى التأكد من البيانات.');
+                }
+            })
+            .catch(err => {
+                alert('❌ تعذر الاتصال بالشبكة! يرجى التحقق من اتصال الإنترنيت.');
+            })
+            .finally(() => {
+                submitBtn.innerText = 'تأكيد وإرسال الطلب عبر تلجرام 🚀';
+                submitBtn.disabled = false;
+            });
+        }
+
+        initData();
+    </script>
+</body>
+</html>
