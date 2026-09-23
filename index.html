@@ -1,0 +1,1390 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ش.ذ.م.م جلولي هشام | NSR.DJ - المذبح المعتمَد</title>
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-red: #d92d20;
+            --primary-hover: #b42318;
+            --bg-cream: #fbf9f5;
+            --card-bg: #ffffff;
+            --text-main: #1d2939;
+            --text-muted: #667085;
+            --border: #eaecf0;
+            --accent-green: #079455;
+            --accent-green-bg: #edfcf2;
+            --telegram-blue: #229ED9;
+            --telegram-hover: #1d8ac0;
+            --shadow-sm: 0 2px 6px rgba(16, 24, 40, 0.04);
+            --shadow-md: 0 12px 24px -4px rgba(16, 24, 40, 0.08);
+        }
+
+        * {
+            box-sizing: border-box;
+            font-family: 'Tajawal', sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: var(--bg-cream);
+            color: var(--text-main);
+            padding-bottom: 0;
+        }
+
+        .container {
+            max-width: 1240px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Secret Admin Floating Trigger */
+        .admin-trigger-btn {
+            position: fixed;
+            top: 15px;
+            right: 15px;
+            z-index: 998;
+            background: #101828;
+            color: #ffffff;
+            border: none;
+            width: 42px;
+            height: 42px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            transition: all 0.3s ease;
+            opacity: 0.85;
+        }
+
+        .admin-trigger-btn:hover {
+            opacity: 1;
+            transform: scale(1.08);
+            background: var(--primary-red);
+        }
+
+        /* Drawer Overlay & Panel */
+        .drawer-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            display: none;
+            z-index: 999;
+        }
+
+        .drawer-overlay.active { display: block; }
+
+        .side-drawer {
+            position: fixed;
+            top: 0;
+            right: -420px;
+            width: 380px;
+            max-width: 90vw;
+            height: 100%;
+            background-color: #ffffff;
+            box-shadow: -2px 0 12px rgba(0, 0, 0, 0.25);
+            transition: right 0.3s ease-in-out;
+            z-index: 1000;
+            padding: 24px;
+            overflow-y: auto;
+        }
+
+        .side-drawer.open { right: 0; }
+
+        .drawer-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 2px solid var(--border);
+            padding-bottom: 12px;
+            margin-bottom: 20px;
+        }
+
+        .close-btn {
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--text-muted);
+        }
+
+        .admin-options-menu {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .btn-drawer-opt {
+            width: 100%;
+            padding: 14px;
+            border-radius: 10px;
+            border: 1px solid var(--border);
+            background: #f8fafc;
+            color: var(--text-main);
+            font-weight: bold;
+            font-size: 0.95rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            transition: all 0.2s ease;
+        }
+
+        .btn-drawer-opt:hover {
+            background: var(--text-main);
+            color: #ffffff;
+            border-color: var(--text-main);
+        }
+
+        .btn-back {
+            background: none;
+            border: none;
+            color: var(--text-muted);
+            font-size: 0.85rem;
+            cursor: pointer;
+            margin-bottom: 15px;
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            font-weight: bold;
+        }
+
+        .drawer-inputs label {
+            display: block;
+            margin-bottom: 6px;
+            font-size: 0.85rem;
+            font-weight: bold;
+        }
+
+        .drawer-inputs input {
+            width: 100%;
+            padding: 9px 12px;
+            border-radius: 6px;
+            border: 1px solid var(--border);
+            margin-bottom: 12px;
+            direction: ltr;
+            text-align: center;
+            font-weight: bold;
+        }
+
+        .btn-submit {
+            width: 100%;
+            padding: 11px;
+            background-color: var(--accent-green);
+            color: white;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 0.95rem;
+        }
+
+        /* Header */
+        header {
+            background: #ffffff;
+            border-bottom: 1px solid var(--border);
+            padding: 20px 0;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .header-grid {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .brand-container {
+            display: flex;
+            align-items: center;
+            gap: 18px;
+        }
+
+        .brand-logo-container {
+            width: 90px;
+            height: 90px;
+            border-radius: 50%;
+            overflow: hidden;
+            border: 3px solid var(--primary-red);
+            box-shadow: 0 4px 10px rgba(217, 45, 32, 0.2);
+            background: #fff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .brand-logo-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .brand-text h1 {
+            font-size: 1.5rem;
+            font-weight: 900;
+            color: var(--text-main);
+        }
+
+        .brand-text p {
+            color: var(--primary-red);
+            font-weight: 700;
+            font-size: 0.9rem;
+            margin-top: 2px;
+        }
+
+        .phone-contact-header {
+            margin-top: 6px;
+            font-size: 0.88rem;
+            font-weight: 800;
+            color: #101828;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .header-actions {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+        .badge-cert {
+            background: var(--accent-green-bg);
+            border: 1px solid #abefc6;
+            color: var(--accent-green);
+            padding: 8px 18px;
+            border-radius: 30px;
+            font-size: 0.85rem;
+            font-weight: 800;
+        }
+
+        .download-app-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background-color: var(--primary-red);
+            color: #ffffff;
+            padding: 8px 16px;
+            font-size: 0.85rem;
+            font-weight: bold;
+            border-radius: 30px;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .download-app-btn:hover { background-color: var(--primary-hover); }
+
+        .ticker-banner {
+            background: #fef3f2;
+            border: 1px solid #fecdca;
+            color: var(--primary-red);
+            padding: 12px 20px;
+            border-radius: 12px;
+            margin: 25px 0;
+            font-weight: 800;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .app-grid {
+            display: grid;
+            grid-template-columns: 1fr 380px;
+            gap: 30px;
+            align-items: start;
+            margin-bottom: 40px;
+        }
+
+        @media (max-width: 960px) {
+            .app-grid { grid-template-columns: 1fr; }
+        }
+
+        .category-header {
+            margin: 25px 0 15px 0;
+            padding-bottom: 8px;
+            border-bottom: 2px solid var(--border);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .category-header h2 { font-size: 1.25rem; font-weight: 800; }
+
+        .category-tag {
+            background: #f2f4f7;
+            color: var(--text-muted);
+            padding: 4px 12px;
+            border-radius: 16px;
+            font-size: 0.8rem;
+            font-weight: 700;
+        }
+
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+            gap: 20px;
+        }
+
+        .product-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            overflow: hidden;
+            transition: all 0.25s ease;
+            display: flex;
+            flex-direction: column;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .product-card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-md);
+            border-color: var(--primary-red);
+        }
+
+        .product-img-wrapper {
+            position: relative;
+            width: 100%;
+            height: 180px;
+            background: #f8fafc;
+            overflow: hidden;
+        }
+
+        .product-img-wrapper img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .product-content {
+            padding: 16px;
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
+            justify-content: space-between;
+        }
+
+        .product-title { font-size: 1.05rem; font-weight: 800; margin-bottom: 4px; }
+        .product-desc { font-size: 0.82rem; color: var(--text-muted); line-height: 1.4; margin-bottom: 10px; }
+        .product-price { font-size: 1.25rem; font-weight: 900; color: var(--primary-red); margin-bottom: 10px; }
+
+        .weight-input-group {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 10px;
+            background: #f8fafc;
+            padding: 6px 10px;
+            border-radius: 8px;
+            border: 1px solid var(--border);
+        }
+
+        .weight-input-group label { font-size: 0.8rem; font-weight: 700; }
+        .weight-input-group input {
+            width: 100%;
+            padding: 6px;
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            font-weight: bold;
+            text-align: center;
+            direction: ltr;
+            font-size: 1rem;
+        }
+
+        .cut-select {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            font-size: 0.85rem;
+            margin-bottom: 10px;
+            background: var(--bg-cream);
+        }
+
+        .btn-add-cart {
+            width: 100%;
+            background: var(--text-main);
+            color: #ffffff;
+            border: none;
+            padding: 10px;
+            border-radius: 8px;
+            font-weight: 800;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        .btn-add-cart:hover { background: var(--primary-red); }
+
+        .cart-sticky-panel {
+            background: #ffffff;
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            padding: 20px;
+            position: sticky;
+            top: 20px;
+            box-shadow: var(--shadow-md);
+        }
+
+        .cart-title {
+            font-size: 1.15rem;
+            font-weight: 800;
+            border-bottom: 2px solid var(--border);
+            padding-bottom: 10px;
+            margin-bottom: 14px;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .cart-items-list {
+            max-height: 200px;
+            overflow-y: auto;
+            margin-bottom: 14px;
+        }
+
+        .cart-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 8px 0;
+            border-bottom: 1px dashed var(--border);
+            font-size: 0.85rem;
+        }
+
+        .cart-item-price { font-weight: 800; color: var(--primary-red); }
+
+        .btn-remove {
+            color: #98a2b3;
+            cursor: pointer;
+            margin-left: 8px;
+            transition: color 0.2s;
+        }
+
+        .btn-remove:hover { color: var(--primary-red); }
+
+        .total-box {
+            background: var(--bg-cream);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            padding: 12px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+        .total-price { font-size: 1.2rem; font-weight: 900; color: var(--accent-green); }
+
+        .form-label { display: block; font-size: 0.8rem; font-weight: 700; color: var(--text-muted); margin-bottom: 4px; }
+        .form-input {
+            width: 100%;
+            padding: 9px;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            margin-bottom: 10px;
+            outline: none;
+            font-size: 0.85rem;
+        }
+
+        .voice-section {
+            background: #fff5f5;
+            border: 1px solid #fecdca;
+            padding: 12px;
+            border-radius: 12px;
+            margin-bottom: 15px;
+            text-align: center;
+            position: relative;
+        }
+
+        .voice-btn {
+            background: var(--primary-red);
+            color: white;
+            border: none;
+            padding: 10px 18px;
+            border-radius: 25px;
+            font-weight: bold;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            margin: 8px auto;
+            transition: 0.2s;
+        }
+
+        .voice-btn.recording {
+            background: #101828;
+            animation: pulse 1.2s infinite;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.04); }
+            100% { transform: scale(1); }
+        }
+
+        .voice-status { font-size: 0.8rem; font-weight: bold; color: var(--primary-red); margin-top: 4px; }
+
+        .btn-cancel-voice {
+            background: #fee4e2;
+            color: var(--primary-red);
+            border: none;
+            padding: 4px 10px;
+            border-radius: 6px;
+            font-size: 0.75rem;
+            cursor: pointer;
+            margin-top: 6px;
+            font-weight: bold;
+        }
+
+        audio { width: 100%; height: 35px; margin-top: 8px; }
+
+        .btn-checkout {
+            width: 100%;
+            background: var(--telegram-blue);
+            color: #ffffff;
+            border: none;
+            padding: 12px;
+            border-radius: 8px;
+            font-weight: 800;
+            cursor: pointer;
+            transition: background 0.2s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .btn-checkout:hover { background: var(--telegram-hover); }
+
+        #toast {
+            position: fixed;
+            bottom: 25px;
+            left: 25px;
+            background: #101828;
+            color: #fff;
+            padding: 12px 20px;
+            border-radius: 10px;
+            font-weight: bold;
+            font-size: 0.9rem;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+            display: none;
+            z-index: 9999;
+            border-right: 4px solid var(--accent-green);
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+            margin: 15px 0;
+        }
+
+        .stat-card {
+            background: var(--bg-cream);
+            padding: 10px;
+            border-radius: 8px;
+            border: 1px solid var(--border);
+            text-align: center;
+        }
+
+        .stat-card h4 { font-size: 0.75rem; color: var(--text-muted); }
+        .stat-card p { font-size: 1rem; font-weight: 900; color: var(--primary-red); margin-top: 4px; }
+
+        .btn-export-group {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 8px;
+            margin-top: 15px;
+        }
+
+        .btn-download {
+            background: #101828;
+            color: white;
+            border: none;
+            padding: 8px;
+            border-radius: 6px;
+            font-size: 0.78rem;
+            font-weight: bold;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+        }
+
+        .btn-download:hover { background: var(--primary-red); }
+
+        .btn-delete-inv {
+            color: var(--primary-red);
+            cursor: pointer;
+            transition: transform 0.2s;
+            padding: 2px 6px;
+        }
+
+        .btn-delete-inv:hover { transform: scale(1.2); }
+
+        footer {
+            background: #101828;
+            color: #eaecf0;
+            padding: 35px 0 20px 0;
+            border-top: 4px solid var(--primary-red);
+            margin-top: 40px;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 25px;
+            margin-bottom: 25px;
+        }
+
+        .footer-col h3 {
+            color: #fff;
+            font-size: 1.1rem;
+            margin-bottom: 12px;
+            border-right: 3px solid var(--primary-red);
+            padding-right: 8px;
+        }
+
+        .footer-col p {
+            font-size: 0.88rem;
+            color: #98a2b3;
+            line-height: 1.7;
+            margin-bottom: 6px;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid #1d2939;
+            font-size: 0.8rem;
+            color: #667085;
+        }
+    </style>
+</head>
+<body>
+
+    <div id="toast">🛒 تمت إضافة المنتج إلى السلة!</div>
+
+    <!-- Secret Floating Admin Button -->
+    <button class="admin-trigger-btn" onclick="openAdminMenu()" title="الإدارة">
+        <i class="fas fa-ellipsis-v"></i>
+    </button>
+
+    <!-- Side Drawer -->
+    <div id="drawerOverlay" class="drawer-overlay" onclick="closeDrawer()"></div>
+    <div id="sideDrawer" class="side-drawer">
+        <div class="drawer-header">
+            <h3 id="drawerTitle">⚙️ قائمة الإدارة</h3>
+            <button class="close-btn" onclick="closeDrawer()">&times;</button>
+        </div>
+
+        <!-- Step 1: Menu Selection -->
+        <div id="menuSelectionView" class="admin-options-menu">
+            <p style="font-size:0.85rem; color:var(--text-muted); margin-bottom:8px;">اختر القسم المطلوب:</p>
+            <button class="btn-drawer-opt" onclick="selectAdminOption('prices')">
+                <span>🏷️ تعديل الأسعار</span>
+                <i class="fas fa-lock" style="font-size:0.8rem; opacity:0.6;"></i>
+            </button>
+            <button class="btn-drawer-opt" onclick="selectAdminOption('reports')">
+                <span>📊 سجل الفواتير والمبيعات</span>
+                <i class="fas fa-lock" style="font-size:0.8rem; opacity:0.6;"></i>
+            </button>
+        </div>
+
+        <!-- Step 2: Authentication Password -->
+        <div id="authSection" style="display:none;">
+            <button class="btn-back" onclick="resetToMenu()"><i class="fas fa-arrow-right"></i> العودة للقائمة</button>
+            <p style="font-size:0.85rem; margin-bottom:12px; color:var(--text-muted);">يرجى إدخال كلمة المرور المخصصة:</p>
+            <input type="password" id="adminPassword" placeholder="••••••••" style="width:100%; padding:10px; border-radius:6px; border:1px solid var(--border); margin-bottom:12px; text-align:center; direction:ltr;">
+            <button class="btn-submit" onclick="validatePassword()">دخول 🔓</button>
+            <p id="errorMsg" style="color:var(--primary-red); font-weight:bold; font-size:0.8rem; margin-top:8px; display:none; text-align:center;">❌ كلمة المرور غير صحيحة!</p>
+        </div>
+
+        <!-- Step 3: Drawer Main Content -->
+        <div id="drawerContent" style="display:none;">
+            <button class="btn-back" onclick="resetToMenu()"><i class="fas fa-arrow-right"></i> العودة للقائمة</button>
+            
+            <!-- Prices Section -->
+            <div id="pricesContent" class="drawer-inputs" style="display:none;">
+                <h4 style="margin-bottom:12px; font-size:0.95rem;">🏷️ تعديل أسعار اليوم:</h4>
+                <label>دجاج كامل (دج/كغ):</label>
+                <input type="number" id="p_whole" value="450" onchange="updatePrices()">
+                
+                <label>صدور Escalope (دج/كغ):</label>
+                <input type="number" id="p_breast" value="800" onchange="updatePrices()">
+                
+                <label>أفخاذ كاملة (دج/كغ):</label>
+                <input type="number" id="p_legs" value="500" onchange="updatePrices()">
+                
+                <label>أجنحة طازجة (دج/كغ):</label>
+                <input type="number" id="p_wings" value="350" onchange="updatePrices()">
+                
+                <hr style="margin: 10px 0; border: none; border-top: 1px dashed var(--border);">
+
+                <label>كبد وقوانص مختلطة (دج/كغ):</label>
+                <input type="number" id="p_mixed" value="600" onchange="updatePrices()">
+
+                <label>كبد صافي Pur (دج/كغ):</label>
+                <input type="number" id="p_liver" value="900" onchange="updatePrices()">
+
+                <label>قوانص صافية Gésiers (دج/كغ):</label>
+                <input type="number" id="p_gesier" value="450" onchange="updatePrices()">
+
+                <p style="font-size:0.75rem; color:var(--accent-green); margin-top:10px; font-weight:bold;">✅ يتم تحديث قائمة الأسعار مباشرة للزبائن.</p>
+            </div>
+
+            <!-- Reports & Invoices Section -->
+            <div id="reportsContent" style="display:none;">
+                <h4 style="margin-bottom:10px; font-size:0.95rem;">📊 ملخص المبيعات:</h4>
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <h4>مبيعات اليوم</h4>
+                        <p id="statToday">0 دج</p>
+                    </div>
+                    <div class="stat-card">
+                        <h4>مبيعات الأسبوع</h4>
+                        <p id="statWeek">0 دج</p>
+                    </div>
+                    <div class="stat-card">
+                        <h4>مبيعات الشهر</h4>
+                        <p id="statMonth">0 دج</p>
+                    </div>
+                    <div class="stat-card">
+                        <h4>مبيعات السنة</h4>
+                        <p id="statYear">0 دج</p>
+                    </div>
+                </div>
+
+                <h4 style="margin-top:15px; font-size:0.85rem;">📥 تحميل وتقارير الفواتير:</h4>
+                <div class="btn-export-group">
+                    <button class="btn-download" onclick="exportInvoices('daily')"><i class="fas fa-file-download"></i> فاتورة اليوم</button>
+                    <button class="btn-download" onclick="exportInvoices('weekly')"><i class="fas fa-file-download"></i> تقرير الأسبوع</button>
+                    <button class="btn-download" onclick="exportInvoices('monthly')"><i class="fas fa-file-download"></i> تقرير الشهر</button>
+                    <button class="btn-download" onclick="exportInvoices('yearly')"><i class="fas fa-file-download"></i> تقرير السنة</button>
+                </div>
+
+                <div style="display:flex; justify-content:space-between; align-items:center; margin-top:20px;">
+                    <h4 style="font-size:0.85rem;">📋 سجل الطلبيات والفواتير:</h4>
+                    <button onclick="clearAllInvoices()" style="background:none; border:none; color:var(--primary-red); font-size:0.75rem; cursor:pointer; font-weight:bold;">مسح السجل بالكامل</button>
+                </div>
+                <div id="ordersLogTable" style="max-height: 250px; overflow-y: auto; margin-top:8px; font-size:0.8rem;"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Official Header -->
+    <header>
+        <div class="container header-grid">
+            <div class="brand-container">
+                <div class="brand-logo-container">
+                    <img src="logo.png" alt="NSR.DJ Logo" class="brand-logo-img" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1587593810167-a84920ea0781?auto=format&fit=crop&w=200&q=80';">
+                </div>
+                <div class="brand-text">
+                    <h1>ش.ذ.م.م جلولي هشام</h1>
+                    <p>المذبح المعتمَد لتوزيع الدواجن واللحوم البيضاء بالجملة والتجزئة</p>
+                    <div class="phone-contact-header">
+                        <i class="fas fa-phone-alt" style="color:var(--primary-red);"></i> 
+                        <span>0660707122 / 0774465194</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="header-actions">
+                <a href="NSR-DJ.apk" download class="download-app-btn">
+                    <i class="fas fa-download"></i> تحميل تطبيق NSR.DJ
+                </a>
+                <div class="badge-cert">
+                    ✓ الاعتماد الصحي الرسمي: 44/11/38
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div class="container">
+        <div class="ticker-banner">
+            <span>📢 البورصة اليومية: الأسعار محدثة بتاريخ اليوم لمذبح عين الدفلى</span>
+            <span style="font-size: 0.8rem; background: #fff; padding: 4px 10px; border-radius: 6px;">توصيل يومي للجزارين والمحلات</span>
+        </div>
+
+        <div class="app-grid">
+            <!-- Catalog Side -->
+            <div>
+                <div class="category-header">
+                    <h2>🐔 دجاج كامل طازج (Whole Chicken)</h2>
+                    <span class="category-tag">القسم 01</span>
+                </div>
+                <div class="products-grid" id="grid-whole"></div>
+
+                <div class="category-header">
+                    <h2>اللحوم المجزأة (Chicken Parts)</h2>
+                    <span class="category-tag">القسم 02</span>
+                </div>
+                <div class="products-grid" id="grid-parts"></div>
+
+                <div class="category-header">
+                    <h2>الأحشاء والمرفقات (Offal & Bones)</h2>
+                    <span class="category-tag">القسم 03</span>
+                </div>
+                <div class="products-grid" id="grid-offal"></div>
+            </div>
+
+            <!-- Side Cart Panel -->
+            <div class="cart-sticky-panel">
+                <div class="cart-title">
+                    <span>🛒 سلة الطلبيات</span>
+                    <span id="cartCountBadge" style="font-size: 0.8rem; background: var(--primary-red); color: #fff; padding: 2px 8px; border-radius: 10px;">0 عناصر</span>
+                </div>
+
+                <div class="cart-items-list" id="cartContainer">
+                    <p style="color: var(--text-muted); text-align: center; padding: 15px 0; font-size: 0.85rem;">السلة فارغة. اختر المنتجات أو سجل طلبك بصوتك مباشرة.</p>
+                </div>
+
+                <div class="total-box">
+                    <span style="font-weight: 700;">المبلغ الإجمالي التقديري:</span>
+                    <span class="total-price" id="totalDisplay">0 دج</span>
+                </div>
+
+                <div class="voice-section">
+                    <span style="font-size: 0.85rem; font-weight: bold; color: var(--text-main);">🎙️ تسجيل طلبيتك بصوتك (فوكال):</span>
+                    <p style="font-size: 0.75rem; color: var(--text-muted);">إذا لم تكن تريد الكتابة، اضغط واترك رسالتك الصوتية مباشرة</p>
+                    
+                    <button type="button" class="voice-btn" id="recordBtn" onclick="toggleRecording()">
+                        <i class="fas fa-microphone" id="recordIcon"></i> <span id="recordBtnText">ابدأ التسجيل الصوتي</span>
+                    </button>
+                    
+                    <div class="voice-status" id="voiceStatus"></div>
+                    <audio id="audioPreview" controls style="display:none;"></audio>
+                    <button type="button" id="cancelVoiceBtn" class="btn-cancel-voice" style="display:none;" onclick="resetVoiceRecording()">🗑️ حذف التسجيل الصوتي</button>
+                </div>
+
+                <form onsubmit="handleOrderSubmit(event)">
+                    <label class="form-label">اسم الجزار / المحل / الزبون</label>
+                    <input type="text" id="custName" class="form-input" placeholder="مثال: جزارة السلام">
+
+                    <label class="form-label">رقم الهاتف للاتصال</label>
+                    <input type="tel" id="custPhone" class="form-input" required placeholder="06XXXXXXXX">
+
+                    <label class="form-label">⏰ وقت التوصيل المفضل</label>
+                    <select id="deliveryTime" class="form-input" style="background:#f8fafc; font-weight:bold;">
+                        <option value="الصباح الباكر (06:00 - 09:00)">🌅 الصباح الباكر (06:00 - 09:00)</option>
+                        <option value="الفترة الصباحية (09:00 - 12:00)">☀️ الفترة الصباحية (09:00 - 12:00)</option>
+                        <option value="الفترة المسائية (14:00 - 17:00)">🌆 الفترة المسائية (14:00 - 17:00)</option>
+                    </select>
+
+                    <label class="form-label">البلدية / مكان التسليم</label>
+                    <input type="text" id="custLoc" class="form-input" placeholder="عين الدفلى، خميس مليانة، العطاف...">
+
+                    <button type="submit" id="btnSubmitOrder" class="btn-checkout"><i class="fab fa-telegram-plane"></i> تأكيد الطلب وإرساله </button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Official Footer -->
+    <footer>
+        <div class="container footer-grid">
+            <div class="footer-col">
+                <h3>ش.ذ.م.م جلولي هشام (NSR.DJ)</h3>
+                <p>📍 <strong>العنوان القانوني:</strong> مجموعة ملكية رقم 474 قسم 11، فرقة غوالم شمال جليدة، ولاية عين الدفلى.</p>
+                <p>📜 <strong>رقم الاعتماد الصحي:</strong> 44/11/38</p>
+            </div>
+            
+            <div class="footer-col">
+                <h3>معلومات التنسيق والشروط الصحية</h3>
+                <p>❄️ <strong>شروط الحفظ:</strong> يحفظ تحت درجة حرارة بين 0° إلى 4° مئوية.</p>
+                <p>📅 <strong>تاريخ الذبح والتحضير:</strong> يومي طازج</p>
+                <p>⏳ <strong>الصلاحية:</strong> يستهلك خلال 3 أيام من تاريخ الذبح</p>
+            </div>
+
+            <div class="footer-col">
+                <h3>طلب التوصيل والخدمات</h3>
+                <p>📞 <strong>رقم الهاتف والتواصل:</strong> 0660707122 / 0774465194</p>
+                <p>🚚 خدمة التوصيل المبرد متوفرة يومياً للمحلات والمطاعم والجزارين عبر كامل الولايات المجاورة.</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            جميع الحقوق محفوظة © ش.ذ.م.م جلولي هشام (NSR.DJ) - عين الدفلى
+        </div>
+    </footer>
+
+    <script>
+        const TELEGRAM_BOT_TOKEN = "8763087381:AAHimivIod2odlqzsF6G06vkHaZKtBhI7Ik"; 
+        const TELEGRAM_CHAT_ID = "1858438551";
+
+        let catalog = [
+            { id: 'p1', cat: 'whole', title: 'دجاج طازج كامل (Poulet Entier)', price: 450, desc: 'منظف ومذبوح وفق الشريعة الإسلامية. التوزيع يومي.', img: 'https://images.unsplash.com/photo-1587593810167-a84920ea0781?auto=format&fit=crop&w=600&q=80', cuts: ['بدون تقطيع (كامل)', 'مقطع إلى 4 قطع', 'مقطع إلى 8 قطع'] },
+            { id: 'p2', cat: 'parts', title: 'صدور دجاج (Escalope)', price: 800, desc: 'نزع الجلد والعظم، جاهز للشرائح والتتبيل.', img: 'https://images.unsplash.com/photo-1604503468506-a8da13d82791?auto=format&fit=crop&w=600&q=80', cuts: ['شرائح اسكالوب', 'قطع مكعبات (Escalope De)', 'صدر كامل بالعظم'] },
+            { id: 'p3', cat: 'parts', title: 'أفخاذ دجاج كاملة (Cuisses)', price: 500, desc: 'طازجة يومياً مصفاة ومجهزة.', img: 'WhatsApp-Image-2024-06-10-at-8.07.18-PM.jpeg', cuts: ['فخذ كامل', 'فخذ مفصول (Haut/Pilon)', 'فخذ منزوع العظم (Désossé)'] },
+            { id: 'p4', cat: 'parts', title: 'أجنحة دجاج طازجة (Ailes)', price: 350, desc: 'ممتازة للشواء والشوايات.', img: 'أجنحة-دجاج-1ك-طازج.jpg', cuts: ['أجنحة كاملة', 'أجنحة مقسومة (Wings)'] },
+            
+            // أحشاء مفصولة لكل واحدة بطاقتها وسعرها الخاص
+            { id: 'p5_mixed', cat: 'offal', title: 'كبد وقوانص مختلطة (Foie & Gésier)', price: 600, desc: 'مزيج كبد وقوانص دجاج طازج ومنظف.', img: 'Capture.JPG', cuts: ['مختلطة (كبد وقوانص)'] },
+            { id: 'p5_liver', cat: 'offal', title: 'كبد دجاج صافي (Foie Pur)', price: 900, desc: 'كبد دجاج صافي طازج وفرز يومي ممتاز.', img: '11122.JPG', cuts: ['كبد صافي'] },
+            { id: 'p5_gesier', cat: 'offal', title: 'قوانص صافية (Gésiers Purs)', price: 450, desc: 'قوانص دجاج منظفة ومجهزة بعناية.', img: '1313.JPG', cuts: ['قوانص صافية'] }
+        ];
+
+        let cart = [];
+        let recordedAudioBlob = null;
+        let mediaRecorder = null;
+        let audioChunks = [];
+        let isRecording = false;
+
+        let invoicesHistory = JSON.parse(localStorage.getItem('nsr_invoices_history')) || [];
+
+        function renderProducts() {
+            document.getElementById('grid-whole').innerHTML = '';
+            document.getElementById('grid-parts').innerHTML = '';
+            document.getElementById('grid-offal').innerHTML = '';
+
+            catalog.forEach(p => {
+                let optionsHtml = p.cuts.map(c => `<option value="${c}">${c}</option>`).join('');
+                let cardHtml = `
+                    <div class="product-card">
+                        <div class="product-img-wrapper">
+                            <img src="${p.img}" alt="${p.title}" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1587593810167-a84920ea0781?auto=format&fit=crop&w=600&q=80';">
+                        </div>
+                        <div class="product-content">
+                            <div>
+                                <div class="product-title">${p.title}</div>
+                                <div class="product-desc">${p.desc}</div>
+                                <div class="product-price">${p.price} دج <span style="font-size:0.8rem; color:var(--text-muted); font-weight:normal;">/ كغ</span></div>
+                            </div>
+                            <div>
+                                <div class="weight-input-group">
+                                    <label>الكمية (كغ):</label>
+                                    <input type="number" id="qty-${p.id}" value="2.5" min="1" step="0.5">
+                                </div>
+                                <select class="cut-select" id="cut-${p.id}">
+                                    ${optionsHtml}
+                                </select>
+                                <button class="btn-add-cart" onclick="addToCart('${p.id}')">🛒 إضافة للسلة</button>
+                            </div>
+                        </div>
+                    </div>
+                `;
+                if(p.cat === 'whole') document.getElementById('grid-whole').innerHTML += cardHtml;
+                else if(p.cat === 'parts') document.getElementById('grid-parts').innerHTML += cardHtml;
+                else if(p.cat === 'offal') document.getElementById('grid-offal').innerHTML += cardHtml;
+            });
+        }
+
+        function addToCart(pId) {
+            let prod = catalog.find(x => x.id === pId);
+            let qty = parseFloat(document.getElementById(`qty-${pId}`).value) || 1;
+            let cut = document.getElementById(`cut-${pId}`).value;
+
+            let existing = cart.find(x => x.id === pId && x.cut === cut);
+            if(existing) {
+                existing.qty += qty;
+            } else {
+                cart.push({ id: pId, title: prod.title, price: prod.price, qty: qty, cut: cut });
+            }
+
+            renderCart();
+            showToast();
+        }
+
+        function removeFromCart(index) {
+            cart.splice(index, 1);
+            renderCart();
+        }
+
+        function renderCart() {
+            let container = document.getElementById('cartContainer');
+            let total = 0;
+            let totalItemsCount = 0;
+
+            if(cart.length === 0) {
+                container.innerHTML = `<p style="color: var(--text-muted); text-align: center; padding: 15px 0; font-size: 0.85rem;">السلة فارغة. اختر المنتجات أو سجل طلبك بصوتك مباشرة.</p>`;
+            } else {
+                container.innerHTML = '';
+                cart.forEach((item, idx) => {
+                    let sub = item.price * item.qty;
+                    total += sub;
+                    totalItemsCount += item.qty;
+                    container.innerHTML += `
+                        <div class="cart-item">
+                            <div>
+                                <strong>${item.title}</strong><br>
+                                <span style="font-size:0.75rem; color:var(--text-muted);">${item.qty} كغ × ${item.price} دج (${item.cut})</span>
+                            </div>
+                            <div style="display:flex; align-items:center;">
+                                <span class="cart-item-price">${sub} دج</span>
+                                <i class="fas fa-trash btn-remove" onclick="removeFromCart(${idx})"></i>
+                            </div>
+                        </div>
+                    `;
+                });
+            }
+
+            document.getElementById('totalDisplay').textContent = `${total} دج`;
+            document.getElementById('cartCountBadge').textContent = `${cart.length} عناصر (${totalItemsCount} كغ)`;
+        }
+
+        function showToast() {
+            let t = document.getElementById('toast');
+            t.style.display = 'block';
+            setTimeout(() => { t.style.display = 'none'; }, 2000);
+        }
+
+        // Voice Recording Controls
+        async function toggleRecording() {
+            if (!isRecording) {
+                try {
+                    const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+                    
+                    let options = {};
+                    if (MediaRecorder.isTypeSupported('audio/webm')) options = { mimeType: 'audio/webm' };
+                    else if (MediaRecorder.isTypeSupported('audio/mp4')) options = { mimeType: 'audio/mp4' };
+                    else if (MediaRecorder.isTypeSupported('audio/ogg')) options = { mimeType: 'audio/ogg' };
+
+                    mediaRecorder = new MediaRecorder(stream, options);
+                    audioChunks = [];
+
+                    mediaRecorder.ondataavailable = event => {
+                        if (event.data.size > 0) audioChunks.push(event.data);
+                    };
+
+                    mediaRecorder.onstop = () => {
+                        const mimeType = mediaRecorder.mimeType || 'audio/ogg';
+                        recordedAudioBlob = new Blob(audioChunks, { type: mimeType });
+                        const audioUrl = URL.createObjectURL(recordedAudioBlob);
+                        const audioPreview = document.getElementById('audioPreview');
+                        audioPreview.src = audioUrl;
+                        audioPreview.style.display = 'block';
+                        document.getElementById('cancelVoiceBtn').style.display = 'inline-block';
+                        document.getElementById('voiceStatus').textContent = '✅ تم تسجيل المقطع بنجاح!';
+                    };
+
+                    mediaRecorder.start();
+                    isRecording = true;
+                    document.getElementById('recordBtn').classList.add('recording');
+                    document.getElementById('recordBtnText').textContent = 'إيقاف التسجيل...';
+                    document.getElementById('recordIcon').className = 'fas fa-square';
+                    document.getElementById('voiceStatus').textContent = '🎙️ جاري التسجيل الآن... اتكلم بحرية';
+                } catch (err) {
+                    alert('يرجى السماح بالوصول للميكروفون لتسجيل الطلب بصوتك.');
+                }
+            } else {
+                mediaRecorder.stop();
+                isRecording = false;
+                document.getElementById('recordBtn').classList.remove('recording');
+                document.getElementById('recordBtnText').textContent = 'إعادة التسجيل';
+                document.getElementById('recordIcon').className = 'fas fa-microphone';
+            }
+        }
+
+        function resetVoiceRecording() {
+            if (mediaRecorder && mediaRecorder.state !== 'inactive') {
+                mediaRecorder.stop();
+            }
+            isRecording = false;
+            recordedAudioBlob = null;
+            audioChunks = [];
+            
+            const audioPreview = document.getElementById('audioPreview');
+            audioPreview.pause();
+            audioPreview.currentTime = 0;
+            audioPreview.src = '';
+            audioPreview.style.display = 'none';
+
+            document.getElementById('recordBtn').classList.remove('recording');
+            document.getElementById('recordBtnText').textContent = 'ابدأ التسجيل الصوتي';
+            document.getElementById('recordIcon').className = 'fas fa-microphone';
+            document.getElementById('voiceStatus').textContent = '';
+            document.getElementById('cancelVoiceBtn').style.display = 'none';
+        }
+
+        async function handleOrderSubmit(e) {
+            e.preventDefault();
+            let name = document.getElementById('custName').value.trim() || 'زبون عام';
+            let phone = document.getElementById('custPhone').value.trim();
+            let time = document.getElementById('deliveryTime').value;
+            let loc = document.getElementById('custLoc').value.trim() || 'غير محدد';
+
+            if(cart.length === 0 && !recordedAudioBlob) {
+                alert('⚠️ يرجى إضافة منتجات للسلة أو إرفاق تسجيل صوتي للطلب قبل الإرسال.');
+                return;
+            }
+
+            let orderTotal = cart.reduce((sum, item) => sum + (item.price * item.qty), 0);
+
+            // Save Invoice Record To History
+            let newInvoice = {
+                id: 'INV-' + Date.now().toString().slice(-6),
+                date: new Date().toISOString(),
+                customer: name,
+                phone: phone,
+                location: loc,
+                deliveryTime: time,
+                items: [...cart],
+                total: orderTotal,
+                hasVoice: recordedAudioBlob ? true : false
+            };
+
+            invoicesHistory.push(newInvoice);
+            localStorage.setItem('nsr_invoices_history', JSON.stringify(invoicesHistory));
+
+            // Telegram Text Body
+            let msg = `*🛍️ طلبية جديدة - NSR.DJ (مذبح جلولي)*\n`;
+            msg += `---------------------------------\n`;
+            msg += `👤 *الزبون/المحل:* ${name}\n`;
+            msg += `📞 *الهاتف:* ${phone}\n`;
+            msg += `⏰ *وقت التوصيل:* ${time}\n`;
+            msg += `📍 *البلدية/المكان:* ${loc}\n`;
+            msg += `---------------------------------\n`;
+            
+            if(cart.length > 0) {
+                msg += `📋 *تفاصيل الطلبية:*\n`;
+                cart.forEach((item, i) => {
+                    msg += `${i+1}. ${item.title} - ${item.qty} كغ (${item.cut}) = *${item.price * item.qty} دج*\n`;
+                });
+                msg += `---------------------------------\n`;
+                msg += `💰 *المبلغ التقديري:* *${orderTotal} دج*\n`;
+            }
+
+            if(recordedAudioBlob) {
+                msg += `\n🎙️ *ملاحظة:* يوجد تسجيل صوتي مرفق مع هذا الطلب!`;
+            }
+
+            const btnSubmit = document.getElementById('btnSubmitOrder');
+            btnSubmit.disabled = true;
+            btnSubmit.innerHTML = `<i class="fas fa-spinner fa-spin"></i> جاري إرسال الطلب...`;
+
+            try {
+                let textUrl = `https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage`;
+                let textRes = await fetch(textUrl, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        chat_id: TELEGRAM_CHAT_ID,
+                        text: msg,
+                        parse_mode: 'Markdown'
+                    })
+                });
+
+                if (!textRes.ok) throw new Error('فشل الإرسال.');
+
+                if(recordedAudioBlob) {
+                    let voiceFormData = new FormData();
+                    voiceFormData.append('chat_id', TELEGRAM_CHAT_ID);
+                    
+                    let extension = 'ogg';
+                    if (recordedAudioBlob.type.includes('webm')) extension = 'webm';
+                    else if (recordedAudioBlob.type.includes('mp4')) extension = 'm4a';
+
+                    voiceFormData.append('voice', recordedAudioBlob, `voice_order.${extension}`);
+
+                    let voiceRes = await fetch(`https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendVoice`, {
+                        method: 'POST',
+                        body: voiceFormData
+                    });
+
+                    if (!voiceRes.ok) {
+                        let audioFormData = new FormData();
+                        audioFormData.append('chat_id', TELEGRAM_CHAT_ID);
+                        audioFormData.append('audio', recordedAudioBlob, `voice_order.${extension}`);
+                        await fetch(`https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendAudio`, {
+                            method: 'POST',
+                            body: audioFormData
+                        });
+                    }
+                }
+
+                alert('✅ تم إرسال الطلبية بنجاح عبر تيليغرام!');
+                
+                cart = [];
+                resetVoiceRecording();
+                renderCart();
+
+            } catch (err) {
+                alert('❌ حدث خطأ أثناء إرسال الطلب، يرجى المحاولة مرة أخرى.');
+            } finally {
+                btnSubmit.disabled = false;
+                btnSubmit.innerHTML = `<i class="fab fa-telegram-plane"></i> تأكيد الطلب وإرساله `;
+            }
+        }
+
+        // Drawer Controls
+        let activeAdminAction = '';
+
+        function openAdminMenu() {
+            document.getElementById('sideDrawer').classList.add('open');
+            document.getElementById('drawerOverlay').classList.add('active');
+            resetToMenu();
+        }
+
+        function closeDrawer() {
+            document.getElementById('sideDrawer').classList.remove('open');
+            document.getElementById('drawerOverlay').classList.remove('active');
+        }
+
+        function resetToMenu() {
+            document.getElementById('drawerTitle').textContent = '⚙️ قائمة الإدارة';
+            document.getElementById('menuSelectionView').style.display = 'flex';
+            document.getElementById('authSection').style.display = 'none';
+            document.getElementById('drawerContent').style.display = 'none';
+            document.getElementById('pricesContent').style.display = 'none';
+            document.getElementById('reportsContent').style.display = 'none';
+            document.getElementById('adminPassword').value = '';
+            document.getElementById('errorMsg').style.display = 'none';
+        }
+
+        function selectAdminOption(action) {
+            activeAdminAction = action;
+            document.getElementById('menuSelectionView').style.display = 'none';
+            document.getElementById('authSection').style.display = 'block';
+            document.getElementById('adminPassword').focus();
+        }
+
+        function validatePassword() {
+            let pwd = document.getElementById('adminPassword').value;
+            
+            if(activeAdminAction === 'prices' && pwd === '12340000') { 
+                document.getElementById('errorMsg').style.display = 'none';
+                document.getElementById('authSection').style.display = 'none';
+                document.getElementById('drawerContent').style.display = 'block';
+                document.getElementById('drawerTitle').textContent = '🏷️ تعديل الأسعار اليومية';
+                document.getElementById('pricesContent').style.display = 'block';
+            } else if(activeAdminAction === 'reports' && pwd === '1234N0000') {
+                document.getElementById('errorMsg').style.display = 'none';
+                document.getElementById('authSection').style.display = 'none';
+                document.getElementById('drawerContent').style.display = 'block';
+                document.getElementById('drawerTitle').textContent = '📊 الفواتير والمبيعات';
+                document.getElementById('reportsContent').style.display = 'block';
+                calculateStatsAndLogs();
+            } else {
+                document.getElementById('errorMsg').style.display = 'block';
+            }
+        }
+
+        function updatePrices() {
+            catalog.find(c => c.id === 'p1').price = parseFloat(document.getElementById('p_whole').value) || 0;
+            catalog.find(c => c.id === 'p2').price = parseFloat(document.getElementById('p_breast').value) || 0;
+            catalog.find(c => c.id === 'p3').price = parseFloat(document.getElementById('p_legs').value) || 0;
+            catalog.find(c => c.id === 'p4').price = parseFloat(document.getElementById('p_wings').value) || 0;
+            
+            // تحديث أسعار الأحشاء المفصولة
+            catalog.find(c => c.id === 'p5_mixed').price = parseFloat(document.getElementById('p_mixed').value) || 0;
+            catalog.find(c => c.id === 'p5_liver').price = parseFloat(document.getElementById('p_liver').value) || 0;
+            catalog.find(c => c.id === 'p5_gesier').price = parseFloat(document.getElementById('p_gesier').value) || 0;
+
+            renderProducts();
+            renderCart();
+        }
+
+        function deleteInvoice(invId) {
+            if(confirm('هل أنت تأكد من حذف هذه الفاتورة غير المستلمة/الملغاة؟')) {
+                invoicesHistory = invoicesHistory.filter(inv => inv.id !== invId);
+                localStorage.setItem('nsr_invoices_history', JSON.stringify(invoicesHistory));
+                calculateStatsAndLogs();
+            }
+        }
+
+        function clearAllInvoices() {
+            if(confirm('⚠️ هل تريد حذف جميع الفواتير من السجل بشكل كامل؟')) {
+                invoicesHistory = [];
+                localStorage.removeItem('nsr_invoices_history');
+                calculateStatsAndLogs();
+            }
+        }
+
+        function calculateStatsAndLogs() {
+            let now = new Date();
+            let sumToday = 0, sumWeek = 0, sumMonth = 0, sumYear = 0;
+
+            invoicesHistory.forEach(inv => {
+                let d = new Date(inv.date);
+                let diffDays = (now - d) / (1000 * 3600 * 24);
+
+                if(d.toDateString() === now.toDateString()) sumToday += inv.total;
+                if(diffDays <= 7) sumWeek += inv.total;
+                if(d.getMonth() === now.getMonth() && d.getFullYear() === now.getFullYear()) sumMonth += inv.total;
+                if(d.getFullYear() === now.getFullYear()) sumYear += inv.total;
+            });
+
+            document.getElementById('statToday').textContent = `${sumToday} دج`;
+            document.getElementById('statWeek').textContent = `${sumWeek} دج`;
+            document.getElementById('statMonth').textContent = `${sumMonth} دج`;
+            document.getElementById('statYear').textContent = `${sumYear} دج`;
+
+            let logContainer = document.getElementById('ordersLogTable');
+            if(invoicesHistory.length === 0) {
+                logContainer.innerHTML = '<p style="color:var(--text-muted); padding:10px 0;">لا توجد فواتير مسجلة بعد.</p>';
+            } else {
+                let html = `<table style="width:100%; border-collapse:collapse; text-align:right;">
+                    <tr style="border-bottom:2px solid var(--border); background:#f8fafc;">
+                        <th style="padding:6px;">الرقم</th>
+                        <th style="padding:6px;">الزبون</th>
+                        <th style="padding:6px;">المبلغ</th>
+                        <th style="padding:6px; text-align:center;">إجراء</th>
+                    </tr>`;
+                invoicesHistory.slice().reverse().forEach(inv => {
+                    html += `<tr style="border-bottom:1px solid var(--border);">
+                        <td style="padding:6px; font-weight:bold;">${inv.id}</td>
+                        <td style="padding:6px;">${inv.customer}</td>
+                        <td style="padding:6px; color:var(--accent-green); font-weight:bold;">${inv.total} دج</td>
+                        <td style="padding:6px; text-align:center;">
+                            <i class="fas fa-trash-alt btn-delete-inv" title="حذف الفاتورة" onclick="deleteInvoice('${inv.id}')"></i>
+                        </td>
+                    </tr>`;
+                });
+                html += `</table>`;
+                logContainer.innerHTML = html;
+            }
+        }
+
+        function exportInvoices(period) {
+            let now = new Date();
+            let filtered = invoicesHistory.filter(inv => {
+                let d = new Date(inv.date);
+                let diffDays = (now - d) / (1000 * 3600 * 24);
+                if(period === 'daily') return d.toDateString() === now.toDateString();
+                if(period === 'weekly') return diffDays <= 7;
+                if(period === 'monthly') return d.getMonth() === now.getMonth() && d.getFullYear() === now.getFullYear();
+                if(period === 'yearly') return d.getFullYear() === now.getFullYear();
+                return true;
+            });
+
+            if(filtered.length === 0) {
+                alert('لا توجد فواتير مسجلة في هذا النطاق الزمني.');
+                return;
+            }
+
+            let csvContent = "data:text/csv;charset=utf-8,\uFEFF";
+            csvContent += "رقم الفاتورة,التاريخ,اسم الزبون,الهاتف,المكان,توقيت التوصيل,المبلغ الإجمالي (دج)\n";
+
+            filtered.forEach(inv => {
+                let dateStr = new Date(inv.date).toLocaleString('ar-DZ');
+                csvContent += `"${inv.id}","${dateStr}","${inv.customer}","${inv.phone}","${inv.location}","${inv.deliveryTime}","${inv.total}"\n`;
+            });
+
+            let encodedUri = encodeURI(csvContent);
+            let link = document.createElement("a");
+            link.setAttribute("href", encodedUri);
+            link.setAttribute("download", `تقرير_الفواتير_${period}_NSR_DJ.csv`);
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+        }
+
+        renderProducts();
+    </script>
+</body>
+</html>
